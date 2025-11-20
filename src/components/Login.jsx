@@ -19,7 +19,7 @@ export default function Login() {
   const [error, setError] = useState('');
   const navigate = useNavigate();
 
-  // 👉 COMBINACIÓN DE AMBAS LÓGICAS
+  // COMBINACIÓN DE AMBAS LÓGICAS
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -27,21 +27,21 @@ export default function Login() {
     setTimeout(() => {
       const user = ejemplo.find((u) => u.email === email);
 
-      // ❌ Usuario no existe
+      // Usuario no existe
       if (!user) {
         setError("El usuario no existe en el sistema.");
         setIsLoading(false);
         return;
       }
 
-      // ❌ Contraseña incorrecta
+      // Contraseña incorrecta
       if (user.password !== password) {
         setError("La contraseña es incorrecta.");
         setIsLoading(false);
         return;
       }
 
-      // ✔ Guardar sesión (igual que en el primer código)
+      // Guardar sesión (igual que en el primer código)
       localStorage.setItem(
         "user",
         JSON.stringify({
@@ -50,7 +50,7 @@ export default function Login() {
         })
       );
 
-      // ✔ Redirigir según rol (primer código)
+      // Redirigir según rol (primer código)
       switch (user.role) {
         case "ADMIN":
           navigate("/admin/dashboard");
@@ -156,7 +156,11 @@ export default function Login() {
 
               <div className="flex justify-between text-sm font-medium">
                 <button className="text-blue-900 hover:text-orange-500">¿Olvidaste tu contraseña?</button>
-                <button className="text-blue-900 hover:text-orange-500">Crear Usuario</button>
+                <button
+                  type="button"
+                  onClick={() => navigate("/CreacionUsuarios")}
+                  className="text-blue-900 hover:text-orange-500"
+                >Crear Usuario</button>
               </div>
 
               <button
